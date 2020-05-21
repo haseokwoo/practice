@@ -31,8 +31,13 @@ public class UnsortedList implements Listable {
 
 	@Override
 	public void insert(int pValueToInsert) {
-		pointer++;
-		values[pointer - 1] = pValueToInsert;
+		if (pointer < MAX_SIZE) {
+			pointer++;
+			values[pointer - 1] = pValueToInsert;
+		} else {
+			System.out.println(
+					"Failed to insert " + pValueToInsert + ". You exceeded the maximum capacity of " + MAX_SIZE + ".");
+		}
 	}
 
 	@Override

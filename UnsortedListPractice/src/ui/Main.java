@@ -14,7 +14,7 @@ public class Main {
 		ul.insert(34);
 		ul.insert(3);
 		ul.insert(3);
-//		ul.insert(6);
+		ul.insert(6);
 		
 		System.out.println("Current array size: " + ul.getSizeOfList());
 		System.out.println(ul);
