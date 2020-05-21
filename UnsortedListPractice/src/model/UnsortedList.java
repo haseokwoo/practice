@@ -31,12 +31,29 @@ public class UnsortedList implements Listable {
 
 	@Override
 	public void insert(int pValueToInsert) {
-		if (pointer < MAX_SIZE) {
-			pointer++;
-			values[pointer - 1] = pValueToInsert;
+		if (areDuplicatesAllowed() == true) {
+			if (pointer < MAX_SIZE) {
+				pointer++;
+				values[pointer - 1] = pValueToInsert;
+			} else {
+				System.out.println("Failed to insert " + pValueToInsert + ". You exceeded the maximum capacity of "
+						+ MAX_SIZE + ".");
+			}
 		} else {
-			System.out.println(
-					"Failed to insert " + pValueToInsert + ". You exceeded the maximum capacity of " + MAX_SIZE + ".");
+			if (find(pValueToInsert) == -1) {
+				if (pointer < MAX_SIZE) {
+					pointer++;
+					values[pointer - 1] = pValueToInsert;
+				} else {
+					System.out.println("Failed to insert " + pValueToInsert + ". You exceeded the maximum capacity of "
+							+ MAX_SIZE + ".");
+				}
+			} else {
+				if (find(pValueToInsert) != -1) {
+					System.out.println(
+							"Your input " + pValueToInsert + " already exists. " + "Duplicates are not allowed.");
+				}
+			}
 		}
 	}
 
