@@ -63,39 +63,48 @@ public class UnsortedList implements Listable {
 //			values[i] = values[i+1];
 //		}
 //		pointer--;
-		for (int i = 0; i < pointer; i++) {
-			if (values[i] == pValueToDelete) {
-				if (i + 1 < pointer) {
-					for (int y = i; y < pointer; y++) {
-						if (y + 1 < pointer) {
-							values[y] = values[y + 1];
+		if (pointer != 0) {
+			for (int i = 0; i < pointer; i++) {
+				if (values[i] == pValueToDelete) {
+					if (i + 1 < pointer) {
+						for (int y = i; y < pointer; y++) {
+							if (y + 1 < pointer) {
+								values[y] = values[y + 1];
+							}
 						}
 					}
+					values[pointer - 1] = 0;
+					pointer--;
+					break;
 				}
-				values[pointer - 1] = 0;
-				pointer--;
-				break;
 			}
+		} else {
+			System.out.println("The list is empty. Nothing to delete.");
 		}
 
 	}
 
 	@Override
 	public void deleteAll(int pValueToDelete) {
-		for (int i = 0; i <= pointer; i++) {
-			if (values[i] == pValueToDelete) {
-				if (i + 1 < pointer) {
-					for (int y = i; y < pointer; y++) {
-						if (y + 1 < pointer) {
-							values[y] = values[y + 1];
+		if (pointer != 0) {
+			for (int i = 0; i <= pointer; i++) {
+				if (values[i] == pValueToDelete) {
+					if (i + 1 < pointer) {
+						for (int y = i; y < pointer; y++) {
+							if (y + 1 < pointer) {
+								values[y] = values[y + 1];
+							}
 						}
 					}
+					values[pointer - 1] = 0;
+					pointer--;
+					i = -1;
 				}
-				values[pointer - 1] = 0;
-				pointer--;
-				i = -1;
 			}
+		} else {
+			System.out.println("The list is empty. Nothing to delete.");
 		}
+
 	}
 
 	@Override
@@ -126,6 +135,7 @@ public class UnsortedList implements Listable {
 		int[] findAll = new int[pointer2];
 		int z = -1;
 
+//		if (pointer != 0) {
 		for (int i = 0; i < pointer; i++) {
 			if (values[i] == pValueToFind) {
 				z++;
@@ -135,12 +145,12 @@ public class UnsortedList implements Listable {
 				}
 			}
 		}
-
 		if (z != -1) {
 			return Arrays.copyOfRange(findAll, 0, pointer2);
 		} else {
 			return new int[0];
 		}
+//		}
 	}
 
 	@Override
