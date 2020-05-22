@@ -106,14 +106,10 @@ public interface Listable {
 	/**
 	 * Hmmm. This is interesting. I wonder what it is?
 	 */
-	default Listable bubbleSort() {
-		throw new UnsupportedOperationException("Bubble sort not implemented yet!");
-	}
+	Listable bubbleSort();
 
 	/**
 	 * Hmmm. This is interesting. I wonder what it is?
 	 */
-	default Listable selectionSort() {
-		throw new UnsupportedOperationException("Selection sort not implemented yet!");
-	}
+	Listable selectionSort();
 }

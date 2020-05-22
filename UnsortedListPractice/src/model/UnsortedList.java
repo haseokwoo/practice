@@ -3,7 +3,7 @@ package model;
 import java.util.Arrays;
 
 public class UnsortedList implements Listable {
-	public static final int MAX_SIZE = 5;
+	public final int MAX_SIZE = 10;
 	private int[] values = new int[MAX_SIZE];
 	private int pointer = 0;
 	private boolean duplicatesAllowed;
@@ -110,11 +110,22 @@ public class UnsortedList implements Listable {
 	@Override
 	public void initializeWithRandomData(int pSizeOfList) {
 		clear();
-		for (int i = 0; i < pSizeOfList; i++) {
-			values[i] = (int) (Math.random() * (10 - 0 + 1) + 0);
-			pointer++;
+		if (areDuplicatesAllowed() == true) {
+			for (int i = 0; i < pSizeOfList; i++) {
+				values[i] = (int) (Math.random() * (10 - 1 + 1) + 1);
+				pointer++;
+			}
+		} else {
+			for (int i = 0; i < pSizeOfList; i++) {
+				int rand = (int) (Math.random() * (10 - 1 + 1) + 1);
+				if (find(rand) == -1) {
+					values[i] = rand;
+					pointer++;
+				} else {
+					i--;
+				}
+			}
 		}
-
 	}
 
 	@Override
@@ -160,6 +171,31 @@ public class UnsortedList implements Listable {
 			array[i] = values[i];
 		}
 		return Arrays.toString(array);
+	}
+
+	@Override
+	public Listable bubbleSort() {
+		int[] array = values;
+
+		for (int y = 0; y < values.length; y++) {
+			while (y > y + 1) {
+				for (int i = 0; i < values.length; i++) {
+					if (i > i + 1) {
+						int save = array[i + 1];
+						array[i + 1] = array[i];
+						array[i] = save;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public Listable selectionSort() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
