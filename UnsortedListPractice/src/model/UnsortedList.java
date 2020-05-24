@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class UnsortedList implements Listable {
 	public final int MAX_SIZE = 10;
-	private int[] values = new int[MAX_SIZE];
-	private int pointer = 0;
-	private boolean duplicatesAllowed;
+	public int[] values = new int[MAX_SIZE];
+	public int pointer = 0;
+	public boolean duplicatesAllowed;
 
 	@Override
 	public int getSizeOfList() {
@@ -59,10 +59,6 @@ public class UnsortedList implements Listable {
 
 	@Override
 	public void delete(int pValueToDelete) {
-//		for (int i = 0; i < values.length-1; i++) {
-//			values[i] = values[i+1];
-//		}
-//		pointer--;
 		if (pointer != 0) {
 			for (int i = 0; i < pointer; i++) {
 				if (values[i] == pValueToDelete) {
@@ -146,7 +142,6 @@ public class UnsortedList implements Listable {
 		int[] findAll = new int[pointer2];
 		int z = -1;
 
-//		if (pointer != 0) {
 		for (int i = 0; i < pointer; i++) {
 			if (values[i] == pValueToFind) {
 				z++;
@@ -161,7 +156,6 @@ public class UnsortedList implements Listable {
 		} else {
 			return new int[0];
 		}
-//		}
 	}
 
 	@Override
@@ -177,25 +171,40 @@ public class UnsortedList implements Listable {
 	public Listable bubbleSort() {
 		int[] array = values;
 
-		for (int y = 0; y < values.length; y++) {
-			while (y > y + 1) {
-				for (int i = 0; i < values.length; i++) {
-					if (i > i + 1) {
-						int save = array[i + 1];
-						array[i + 1] = array[i];
-						array[i] = save;
+		for (int y = 0; y < pointer; y++) {
+			if (y + 1 < pointer) {
+				while (array[y] > array[y + 1]) {
+					for (int i = 0; i < pointer; i++) {
+						if (i + 1 < pointer) {
+							if (array[i] > array[i + 1]) {
+								int save = array[i + 1];
+								array[i + 1] = array[i];
+								array[i] = save;
+							}
+						}
 					}
 				}
 			}
 		}
-
-		return null;
+		return this;
 	}
 
 	@Override
 	public Listable selectionSort() {
-		// TODO Auto-generated method stub
-		return null;
+		int[] array = values;
+
+		for (int i = 0; i < pointer; i++) {
+			if (i + 1 < pointer) {
+				for (int y = i + 1; y < pointer; y++) {
+					if (array[y] < array[i]) {
+						int save = array[i];
+						array[i] = array[y];
+						array[y] = save;
+					}
+				}
+			}
+		}
+		return this;
 	}
 
 }
