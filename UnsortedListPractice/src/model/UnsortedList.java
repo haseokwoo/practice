@@ -25,6 +25,9 @@ public class UnsortedList implements Listable {
 
 	@Override
 	public void clear() {
+		for (int i = 0; i < pointer; i++) {
+			values[i] = 0;
+		}
 		pointer = 0;
 
 	}
@@ -40,7 +43,10 @@ public class UnsortedList implements Listable {
 						+ MAX_SIZE + ".");
 			}
 		} else {
-			if (find(pValueToInsert) == -1) {
+			if (pointer == 0) {
+				pointer++;
+				values[pointer - 1] = pValueToInsert;
+			} else if (find(pValueToInsert) == -1) {
 				if (pointer < MAX_SIZE) {
 					pointer++;
 					values[pointer - 1] = pValueToInsert;
@@ -117,6 +123,7 @@ public class UnsortedList implements Listable {
 				if (find(rand) == -1) {
 					values[i] = rand;
 					pointer++;
+					selectionSort();
 				} else {
 					i--;
 				}

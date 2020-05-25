@@ -25,14 +25,21 @@ public class SortedList extends UnsortedList implements MoreListable {
 	public int find(int pValueToFind) {
 		int position = pointer - 1;
 		int position2 = position;
+		int counter = pointer;
 		while (true) {
-			if (values[0] > pValueToFind) {
+			if (position == -1) {
+				return -1;
+			} else if (values[0] > pValueToFind) {
 				return -1;
 			} else if (values[position] < pValueToFind) {
 				if (position == pointer - 1) {
 					return -1;
 				}
 				position = (int) (Math.ceil(((position) + position2) / 2));
+				--counter;
+				if (counter == 0) {
+					return -1;
+				}
 			} else if (values[position] > pValueToFind) {
 				position2 = position;
 				position = position / 2;
